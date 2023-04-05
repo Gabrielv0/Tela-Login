@@ -15,7 +15,7 @@ import { Image } from 'react-native';
 import Logo from '../../../assets/logo.png'
 
 
-export function Login() {
+export function Login({navigation}) {
 
     const [inputEmail, setInputEmail] = useState('');
 
@@ -32,7 +32,7 @@ export function Login() {
         else if(!inputPassword){
           setErrorMessage('Digite sua senha')
         } else{
-          fetch(API + '/users?cpf=' + inputCPF + '&password=' + inputPassword)
+          fetch(API + '/users?cpf=' + inputEmail + '&password=' + inputPassword)
           .then(async(response) => {
             const data = await response.json()
             if(data.length === 1) {
@@ -46,8 +46,8 @@ export function Login() {
         }
       }
 
-      function navigateForSignIn() {
-        navigation.navigate('SignIn')
+      function navigateForSignUp() {
+        navigation.navigate('SignUp')
       }
 
       const [offset] = useState(new Animated.ValueXY({x: 0, y: 90}));
@@ -120,10 +120,10 @@ export function Login() {
       >
         <TextInput
           style={styles.input}
-          placeholder='CPF'
+          placeholder='Email'
           keyboardType='number-pad'
-          value={inputCPF}
-          onChangeText={setInputCPF}
+          value={inputEmail}
+          onChangeText={setInputEmail}
         />
         
         <TextInput
@@ -141,9 +141,9 @@ export function Login() {
           }
         </TouchableOpacity>
         
-      <TouchableOpacity onPress={navigateForSignIn}><Text>Esqueceu sua senha?</Text></TouchableOpacity>
+      <TouchableOpacity onPress={navigateForSignUp}><Text>Esqueceu sua senha?</Text></TouchableOpacity>
       <TouchableOpacity onPress={validateLogin} style={styles.button}><Text style={{fontSize: 15}} onPress={validateLogin}>Logar</Text></TouchableOpacity>
-      <TouchableOpacity onPress={navigateForSignIn}><Text>Abrir conta gratuita</Text></TouchableOpacity>
+      <TouchableOpacity onPress={navigateForSignUp}><Text>Abrir conta gratuita</Text></TouchableOpacity>
           
      
       {
