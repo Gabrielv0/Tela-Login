@@ -72,7 +72,6 @@ import Icon from "@expo/vector-icons/MaterialCommunityIcons";
                 <Text style={styles.textoDeErro}>{mensagem}</Text>
             </View>
         )
-
     }
 
     function navigateForLogin() {
